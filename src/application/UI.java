@@ -51,18 +51,24 @@ public class UI {
 		}
 		catch (RuntimeException e) {
 			throw new InputMismatchException("Error reading ChessPosition. Values valid are from a1 to h8");
+		
 		}
-		}
-			
+}
 	public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured) {
 		printBoard(chessMatch.getPieces());
 		System.out.println();
 		printCapturedPieces(captured);
 		System.out.println();
 		System.out.println("Turn : " + chessMatch.getTurn());
-		System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
-		if (chessMatch.getCheck()) {
-			System.out.println("CHECK!");
+		if (!chessMatch.getCheckMate()) {
+		    System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
+		    if (chessMatch.getCheck()) {
+			     System.out.println("CHECK!");
+		}
+	}
+		else {
+			System.out.println("CHECKMATE!");
+			System.out.println("Winner: " + chessMatch.getCurrentPlayer());
 		}
 	}
 
